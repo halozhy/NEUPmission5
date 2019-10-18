@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Board</title>
+<style>
+	body{
+		background-repeat:no-repeat; 
+		background-attachment:fixed;
+	}
+	.header{
+		font-size: 18px;
+		
+	}
+	.liuyan{
+		
+		
+		background-color:#7CC665;
+		padding: 10px;
+		
+		margin-top: 5px;
+		
+		
+		font-size:16px;
+		font-weight: bold;
+	}
+	.submit{
+		
+            webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            padding: 5px 10px;
+			margin-top: -4px;
+            text-align: center;
+            background-color: #B1DDA3;
+            color: black;
+			font-weight:bold;
+			font-size: 16px;
+            border: 2px solid #4CAF50;
+            border-radius:5px;
+    }
+    .submit:hover{
+            background-color: #CBECD5;
+            
+    }	
+	input{
+                border: 1px solid #ccc;
+				padding: 5px;
+                border-radius: 3px;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+            }
+    input:focus{
+                border-color: #3042EE;
+                outline: 0;
+                -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+                box-shadow: inset 0 2px 2px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+            }
+	ul {
+    	list-style-type: none;
+    	margin: 0;
+    	padding: 0;
+    	overflow: hidden;
+    	background-color: #7CC630;
+	}
+
+	li {
+	    float: left;
+	}
+	
+	li a {
+	    display: block;
+	    color: white;
+	    text-align: center;
+	    padding: 7px 16px;
+	    text-decoration: none;
+	}
+	
+	li a:hover {
+	    background-color: #6AAA29;
+	}
+	
+	.block{
+		background-color:rgba(187,222,193,0.70);
+		width: 40%;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top: 10px; 
+	}
+	.date{
+		float: right;
+		margin-top: -42px;
+	}
+	.text{
+		font-size: 25px;
+		margin-left: 30px;
+	}
+	.user{
+		font-weight: bold;
+	}
+	.footer{
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            width: 54px;
+            height: 54px;
+			font-size: 20px;
+			color: white;
+    }
+</style>
+</head>
+
+<body background="../static/1.jpg">
+	<a name="goTop"></a>
+	<ul>
+		<li><a href="/" class="header">Message Board</a></li>
+		<li style="float: right"><a href="/about" class="header">关于</a></li>
+	</ul>
+    <form class="liuyan" style="float: inherit" action="{{ url_for('board') }}" method="POST";>
+               用户昵称: <input id="ipt1" size="12" type="text" name="user">
+               留言内容: <input id="ipt2" size="75" type="text" name="text">
+               <button onClick="checkform()" class="submit" style="float: right" >提交留言</button>
+    </form>
+{% for c in d %}
+	<div class="block">
+	
+	<div class="user">
+	昵称：{{ c['user'] }}
+	<div style="float: right">时间：{{ c['date'] }}</div>
+	</div>
+	<div class="text">
+	{{ c['text'] }}
+	</div>
+	<div class="date">
+	
+	</div>
+    
+	</div>
+{% endfor %}
+	<a href="#goTop"><img class="footer" src="../static/top.png" alt="" ></a>
+</body>
+<script>
+function checkform(){ 
+    if(document.getElementById('ipt1').value.length==0){    
+        alert("没写昵称�?~");
+		
+    }
+    else if(document.getElementById('ipt2').value.length==0){    
+        alert("没写内�?�哦~");
+    }
+}
+</script>	
+</html>
